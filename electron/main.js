@@ -56,7 +56,7 @@ const createWindow = () => {
     mainWindow = null
   })
 
-  mainWindow.webContents.openDevTools({ mode: "detach" })
+  // mainWindow.webContents.openDevTools({ mode: "detach" })
 }
 
 const iconName = path.join(__dirname, "drag-and-drop.png")

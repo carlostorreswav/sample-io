@@ -6,9 +6,6 @@
   "version": "0.1.39",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^14.0.2",
     "electron-store": "^8.0.1",
     "music-metadata": "^7.12.2",
     "rc-slider": "^10.0.0-alpha.6",
@@ -22,7 +19,7 @@
   },
   "devDependencies": {
     "electron": "^18.0.1",
-    "electron-builder": "23.0.2",
+    "electron-builder": "23.0.3",
     "electron-devtools-installer": "^3.2.0"
   },
   "scripts": {
