@@ -23,11 +23,11 @@ if (!app.isPackaged) {
 
 // const { app, autoUpdater } = require("electron")
 
-// const server = "https://hazeltest.vercel.app"
+const server = "https://hazeltest.vercel.app"
 
-// const hazelUrl = `${server}/update/${process.platform}/${app.getVersion()}`
+const hazelUrl = `${server}/update/${process.platform}/${app.getVersion()}`
 
-// autoUpdater.setFeedURL({ url: hazelUrl })
+app.isPackaged && autoUpdater.setFeedURL({ url: hazelUrl })
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
