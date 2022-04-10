@@ -1,0 +1,67 @@
+{
+  "main": "electron/main.js",
+  "homepage": "./",
+  "name": "sample-io",
+  "author": "Carlos Torres",
+  "version": "0.1.39",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^14.0.2",
+    "electron-store": "^8.0.1",
+    "music-metadata": "^7.12.2",
+    "rc-slider": "^10.0.0-alpha.6",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "5.0.0",
+    "react-simple-knob": "^0.0.6",
+    "styled-components": "^5.3.5",
+    "tone": "^14.7.77",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "electron": "^18.0.1",
+    "electron-builder": "23.0.2",
+    "electron-devtools-installer": "^3.2.0"
+  },
+  "scripts": {
+    "start": "export BROWSER=none && react-scripts start",
+    "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "build": "react-scripts build",
+    "build-electron": "mkdir build/src && cp -r electron/. build/electron",
+    "build-electron-win": "mkdir build\\src && Xcopy /E /I /Y electron build\\electron",
+    "package": "npm run build && npm run build-electron && electron-builder build -c.extraMetadata.main=build/electron/main.js --publish never",
+    "patch": "npm version patch && git push",
+    "bundle": "rm -rf dist && rm -rf build && yarn patch && yarn package",
+    "release": "electron-builder",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "build": {
+    "appId": "com.example.electron-react",
+    "productName": "sample-io",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
