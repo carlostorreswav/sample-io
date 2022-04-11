@@ -33,6 +33,7 @@ const startAutoUpdater = () => {
   const UPDATE_CHECK_INTERVAL = 60 * 1000
 setInterval(() => {
   CLOG("🚨 UPDATE_CHECK 🚨")
+  CLOG("new! " + app.getVersion())
   autoUpdater.checkForUpdates()
 }, UPDATE_CHECK_INTERVAL)
 
