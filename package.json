@@ -25,17 +25,14 @@
   "scripts": {
     "start": "export BROWSER=none && react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "build": "react-scripts build",
+    "build-react": "react-scripts build",
     "build-electron": "mkdir build/src && cp -r electron/. build/electron",
-    "build-electron-win": "mkdir build\\src && Xcopy /E /I /Y electron build\\electron",
-    "package": "npm run build && npm run build-electron && electron-builder build -c.extraMetadata.main=build/electron/main.js --publish never",
+    "package": "yarn build-react && yarn build-electron && electron-builder build -c.extraMetadata.main=build/electron/main.js --publish never",
     "patch": "npm version patch && git push",
-    "bundle": "rm -rf dist && rm -rf build && yarn patch && yarn package",
+    "prepare": "rm -rf dist && rm -rf build && yarn patch && yarn package",
     "release": "gh release create $npm_package_version -t $npm_package_version -n $npm_package_version",
     "upload": "gh release upload $npm_package_version dist/sample-io-${npm_package_version}-mac.zip",
-    "all": "yarn bundle && yarn release && yarn upload",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "bundle": "yarn prepare && yarn release && yarn upload"
   },
   "build": {
     "appId": "com.example.electron-react",
