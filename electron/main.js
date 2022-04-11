@@ -30,10 +30,9 @@ const startAutoUpdater = () => {
   CLOG("server: " + server)
   CLOG("hazelUrl: " + hazelUrl)
   app.isPackaged && autoUpdater.setFeedURL({ url: hazelUrl })
-  const UPDATE_CHECK_INTERVAL = 60 * 1000
+  const UPDATE_CHECK_INTERVAL = 60 * 500 //
 setInterval(() => {
   CLOG("🚨 UPDATE_CHECK 🚨")
-  CLOG("new! " + app.getVersion())
   autoUpdater.checkForUpdates()
 }, UPDATE_CHECK_INTERVAL)
 
