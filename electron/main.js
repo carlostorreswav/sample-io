@@ -30,6 +30,24 @@ const startAutoUpdater = () => {
   CLOG("server: " + server)
   CLOG("hazelUrl: " + hazelUrl)
   app.isPackaged && autoUpdater.setFeedURL({ url: hazelUrl })
+  const UPDATE_CHECK_INTERVAL = 60 * 1000
+setInterval(() => {
+  CLOG("🚨 UPDATE_CHECK 🚨")
+  autoUpdater.checkForUpdates()
+}, UPDATE_CHECK_INTERVAL)
+
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Application Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+  }
+dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  })
+})
 }
 
 const createWindow = () => {
