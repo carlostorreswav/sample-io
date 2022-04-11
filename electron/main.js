@@ -31,7 +31,7 @@ app.isPackaged && autoUpdater.setFeedURL({ url: hazelUrl })
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: 220,
+    width: app.isPackaged ? 220 : 800,
     height: 1400,
     show: false,
     webPreferences: {
@@ -56,7 +56,7 @@ const createWindow = () => {
     mainWindow = null
   })
 
-  // mainWindow.webContents.openDevTools({ mode: "detach" })
+  !app.isPackaged && mainWindow.webContents.openDevTools()
 }
 
 const iconName = path.join(__dirname, "drag-and-drop.png")
