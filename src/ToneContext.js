@@ -110,7 +110,7 @@ export const ToneProvider = ({ children }) => {
 
   useEffect(() => {
     prevStart()
-    console.log('prevStart()')
+    window.electron.receive("CLOG", str => console.log(str))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

@@ -21,13 +21,16 @@ if (!app.isPackaged) {
   })
 }
 
-// const { app, autoUpdater } = require("electron")
+const CLOG = str => mainWindow.webContents.send("CLOG", str)
 
-const server = "https://hazeltest.vercel.app"
-
-const hazelUrl = `${server}/update/${process.platform}/${app.getVersion()}`
-
-app.isPackaged && autoUpdater.setFeedURL({ url: hazelUrl })
+const startAutoUpdater = () => {
+  const server = "https://hazeltest.vercel.app"
+  const hazelUrl = `${server}/update/${process.platform}/${app.getVersion()}`
+  CLOG("🚨 STARTING 🚨")
+  CLOG("server: " + server)
+  CLOG("hazelUrl: " + hazelUrl)
+  app.isPackaged && autoUpdater.setFeedURL({ url: hazelUrl })
+}
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -50,6 +53,7 @@ const createWindow = () => {
 
   mainWindow.once("ready-to-show", () => {
     mainWindow.show()
+    startAutoUpdater()
   })
 
   mainWindow.on("closed", () => {

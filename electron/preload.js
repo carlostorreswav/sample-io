@@ -11,7 +11,7 @@ contextBridge.exposeInMainWorld("electron", {
   deleteFolder: async folderID => ipcRenderer.invoke("deleteFolder", folderID),
   replaceTrack: async Track => ipcRenderer.invoke("replaceTrack", Track),
   receive: (channel, func) => {
-    let validChannels = ["sampleProcessing"]
+    let validChannels = ["sampleProcessing", "CLOG"]
     if (validChannels.includes(channel)) {
       // Deliberately strip event as it includes `sender`
       const subscription = (event, ...args) => func(...args)
