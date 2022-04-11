@@ -32,7 +32,7 @@
     "patch": "npm version patch && git push",
     "bundle": "rm -rf dist && rm -rf build && yarn patch && yarn package",
     "release": "gh release create $npm_package_version -t $npm_package_version -n $npm_package_version",
-    "upload": "gh release upload v$npm_package_version dist/sample-io-$(npm_package_version)-mac.zip",
+    "upload": "gh release upload v$npm_package_version dist/sample-io-${npm_package_version}-mac.zip",
     "all": "yarn bundle && yarn release && yarn upload",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
