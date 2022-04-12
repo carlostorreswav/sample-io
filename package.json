@@ -3,7 +3,7 @@
   "homepage": "./",
   "name": "sample-io",
   "author": "Carlos Torres",
-  "version": "0.1.89",
+  "version": "0.1.90",
   "private": true,
   "dependencies": {
     "electron-store": "^8.0.1",
