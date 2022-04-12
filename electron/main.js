@@ -26,28 +26,25 @@ const CLOG = str => mainWindow.webContents.send("CLOG", str)
 const startAutoUpdater = () => {
   const server = "https://hazeltest.vercel.app"
   const hazelUrl = `${server}/update/${process.platform}/${app.getVersion()}`
-  CLOG("🚨 STARTING 🚨")
-  CLOG("server: " + server)
-  CLOG("hazelUrl: " + hazelUrl)
   app.isPackaged && autoUpdater.setFeedURL({ url: hazelUrl })
-  const UPDATE_CHECK_INTERVAL = 60 * 500 //
-setInterval(() => {
-  CLOG("🚨 UPDATE_CHECK 🚨")
-  autoUpdater.checkForUpdates()
-}, UPDATE_CHECK_INTERVAL)
+  const UPDATE_CHECK_INTERVAL = 1000 * 60 * 5
 
-autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-  const dialogOpts = {
-    type: 'info',
-    buttons: ['Restart', 'Later'],
-    title: 'Application Update',
-    message: process.platform === 'win32' ? releaseNotes : releaseName,
-    detail: 'A new version has been downloaded. Restart the application to apply the updates.'
-  }
-dialog.showMessageBox(dialogOpts).then((returnValue) => {
-    if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  setInterval(() => {
+    autoUpdater.checkForUpdates()
+  }, UPDATE_CHECK_INTERVAL)
+
+  autoUpdater.on("update-downloaded", (event, releaseNotes, releaseName) => {
+    const dialogOpts = {
+      type: "info",
+      buttons: ["Restart", "Later"],
+      title: "Application Update",
+      message: process.platform === "win32" ? releaseNotes : releaseName,
+      detail: "A new version has been downloaded. Restart the application to apply the updates.",
+    }
+    dialog.showMessageBox(dialogOpts).then(returnValue => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    })
   })
-})
 }
 
 const createWindow = () => {
