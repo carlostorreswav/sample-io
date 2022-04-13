@@ -59,16 +59,17 @@ const PathDiv = styled.div`
   border-radius: 4px;
   font-size: 10px;
   text-align: center;
+  opacity: ${p => (p.isActive ? "1" : "0.5")};
 `
 
 const Group = styled.div`
   display: flex;
 `
 
-const CloudTagMemo = ({ Folders, setCustomFolder, openFolder, deleteFolder }) => {
+const CloudTagMemo = ({ Folders, setCustomFolder, openFolder, deleteFolder, rescanFolder }) => {
   const [open, setOpen] = useState(true)
 
-  const handleClick = ID => {
+  const handleHideShowClick = ID => {
     let newArray = []
     if (Folders.FoldersActive.includes(ID)) {
       newArray = Folders.FoldersActive.filter(folder => folder !== ID)
@@ -78,6 +79,8 @@ const CloudTagMemo = ({ Folders, setCustomFolder, openFolder, deleteFolder }) =>
     setCustomFolder(newArray, Folders)
   }
 
+  const isActive = ID => Folders.FoldersActive.includes(ID)
+
   return (
     <Module>
       <MenuLabel open={open} center bold onClick={() => setOpen(!open)}>
@@ -86,15 +89,18 @@ const CloudTagMemo = ({ Folders, setCustomFolder, openFolder, deleteFolder }) =>
       <CloudFlex open={open} noFlex>
         <Flex>
           {Folders?.FolderArray?.map((item, idx) => (
-            <PathDiv key={idx} onClick={() => handleClick(item.folderID)}>
+            <PathDiv key={idx} isActive={isActive(item.folderID)}>
               <NameDiv>
                 <PureName>{item.folderName}</PureName>
                 <Group>
-                  <Option hover="#173C90">
-                    {Folders.FoldersActive.includes(item.folderID) ? "HIDE" : "SHOW"}
+                  <Option hover="#173C90" onClick={() => handleHideShowClick(item.folderID)}>
+                    {isActive(item.folderID) ? "HIDE" : "SHOW"}
                   </Option>
-                  <Option hover="tomato" onClick={() => deleteFolder(item.folderID)}>
+                  <Option hover="tomato" onClick={() => deleteFolder(item)}>
                     REMOVE
+                  </Option>
+                  <Option hover="#abe15455" onClick={() => rescanFolder(item.folderID)}>
+                    RESCAN
                   </Option>
                 </Group>
               </NameDiv>
@@ -121,7 +127,8 @@ const CloudTagMemo = ({ Folders, setCustomFolder, openFolder, deleteFolder }) =>
 }
 
 const FolderCloud = () => {
-  const { Clouds, setCustomFolder, openFolder, deleteFolder } = useContext(ToneContext)
+  const { Clouds, setCustomFolder, openFolder, deleteFolder, rescanFolder } =
+    useContext(ToneContext)
   const CloudTagMemoProc = useMemo(
     () => (
       <CloudTagMemo
@@ -129,9 +136,10 @@ const FolderCloud = () => {
         setCustomFolder={setCustomFolder}
         openFolder={openFolder}
         deleteFolder={deleteFolder}
+        rescanFolder={rescanFolder}
       />
     ),
-    [Clouds, setCustomFolder, openFolder, deleteFolder]
+    [Clouds, setCustomFolder, openFolder, deleteFolder, rescanFolder]
   )
 
   return <>{CloudTagMemoProc}</>

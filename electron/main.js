@@ -133,6 +133,33 @@ ipcMain.handle("deleteFolder", async (_, folderID) => {
   return newArray
 })
 
+ipcMain.handle("rescanFolder", async (_, folderID) => {
+  const actualArray = store.get("userData")
+  const selectedFolder = actualArray.filter(item => item.folderID == folderID)[0]
+  const sampleCloud = await getSampleCloud(selectedFolder.root, mainWindow)
+  const tagCloud = await getTagCloud(sampleCloud)
+  const tempoCloud = await getTempoCloud(sampleCloud)
+  const toneCloud = await getToneCloud(sampleCloud)
+  const result = {
+    root: selectedFolder.root,
+    sampleCloud,
+    tempoCloud,
+    toneCloud,
+    tagCloud,
+    folderName: selectedFolder.folderName,
+    folderID: selectedFolder.folderID,
+  }
+  const newArray = actualArray.map(item => {
+    if (item.folderID == folderID) {
+      return result
+    } else {
+      return item
+    }
+  })
+  store.set("userData", newArray)
+  return newArray
+})
+
 ipcMain.handle("replaceTrack", async (_, Track) => {
   const actualArray = store.get("userData")
   const newArray = actualArray.map(folder => {

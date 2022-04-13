@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld("electron", {
   getRawData: async file => ipcRenderer.invoke("getRawData", file),
   getClouds: async sampleArray => ipcRenderer.invoke("getClouds", sampleArray),
   deleteFolder: async folderID => ipcRenderer.invoke("deleteFolder", folderID),
+  rescanFolder: async folderID => ipcRenderer.invoke("rescanFolder", folderID),
   replaceTrack: async Track => ipcRenderer.invoke("replaceTrack", Track),
   receive: (channel, func) => {
     let validChannels = ["sampleProcessing", "CLOG"]

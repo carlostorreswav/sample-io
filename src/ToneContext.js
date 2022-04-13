@@ -127,10 +127,12 @@ export const ToneProvider = ({ children }) => {
     await setCustomFolder(idArray, { FolderArray: Folders })
   }
 
-  const deleteFolder = async folderID => {
-    const Folders = await window.electron.deleteFolder(folderID)
-    const idArray = Folders.map(item => item.folderID)
-    await setCustomFolder(idArray, { FolderArray: Folders }, true)
+  const deleteFolder = async item => {
+    if (window.confirm(`Are you sure you want to delete ${item.folderName} folder?`)) {
+      const Folders = await window.electron.deleteFolder(item.folderID)
+      const idArray = Folders.map(item => item.folderID)
+      await setCustomFolder(idArray, { FolderArray: Folders }, true)
+    }
   }
 
   const setCustomFolder = async (IDArray, Folders, firstTime) => {
@@ -237,6 +239,12 @@ export const ToneProvider = ({ children }) => {
     return result
   }
 
+  const rescanFolder = async folderID => {
+    const Folders = await window.electron.rescanFolder(folderID)
+    const idArray = Folders.map(item => item.folderID)
+    await setCustomFolder(idArray, { FolderArray: Folders }, true)
+  }
+
   const startAudio = () => !stAudio.current && (stAudio.current = new Audio())
 
   return (
@@ -251,6 +259,7 @@ export const ToneProvider = ({ children }) => {
         player,
         setCustomVol,
         deleteFolder,
+        rescanFolder,
         Filter,
         setFilter,
         CloudFilter,
