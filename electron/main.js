@@ -49,8 +49,10 @@ const startAutoUpdater = () => {
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: app.isPackaged ? 220 : 800,
+    width: 220,
     height: 1400,
+    minWidth: 180,
+    maxWidth: 400,
     show: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -75,7 +77,7 @@ const createWindow = () => {
     mainWindow = null
   })
 
-  !app.isPackaged && mainWindow.webContents.openDevTools()
+  !app.isPackaged && mainWindow.webContents.openDevTools({ mode: "detach" })
 }
 
 const iconName = path.join(__dirname, "drag-and-drop.png")
