@@ -1,15 +1,13 @@
 import React from "react"
-import ReactDOM from "react-dom"
-import MainScreen from "./MainScreen"
 import { GlobalStyle } from "./styled-components"
-import { ToneProvider } from "./ToneContext"
-
-ReactDOM.render(
+import { createRoot } from "react-dom/client"
+import AppIndex from "./AppIndex"
+import WebIndex from "./WebIndex"
+const container = document.getElementById("root")
+const root = createRoot(container) // createRoot(container!) if you use TypeScript
+root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <ToneProvider>
-      <MainScreen />
-    </ToneProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+    {process.env.REACT_APP_WEB ? <WebIndex /> : <AppIndex />}
+  </React.StrictMode>
 )

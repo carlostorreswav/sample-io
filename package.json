@@ -23,6 +23,8 @@
     "electron-devtools-installer": "^3.2.0"
   },
   "scripts": {
+    "web:start": "export REACT_APP_WEB=true && react-scripts start",
+    "web:build": "export REACT_APP_WEB=true && react-scripts build",
     "start": "export BROWSER=none && react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "build-react": "react-scripts build",

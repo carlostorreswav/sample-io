@@ -12,14 +12,15 @@ const LoadingLabel = () => {
   const [Loader, setLoader] = useState({ Samples: 0, Folders: 0, Scaning: false })
   useEffect(() => {
     // https://stackoverflow.com/questions/68940343/remove-event-listener-from-preload-js-in-electron-created-by-react-component
-    window.electron.receive("sampleProcessing", data =>
-      setLoader(p => ({
-        ...p,
-        Samples: data.Samples,
-        Folders: data.Folders,
-        Scaning: data.Scaning,
-      }))
-    )
+    !process.env.REACT_APP_WEB &&
+      window.electron.receive("sampleProcessing", data =>
+        setLoader(p => ({
+          ...p,
+          Samples: data.Samples,
+          Folders: data.Folders,
+          Scaning: data.Scaning,
+        }))
+      )
   }, [])
   return (
     <LoaderLabel Scanning={Loader.Scaning}>
