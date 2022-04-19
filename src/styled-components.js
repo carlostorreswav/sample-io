@@ -90,7 +90,7 @@ export const Equis = styled.div`
 
 // GRID SISTEM
 export const MainGrid = styled.div`
-  height: 100vh;
+  height: ${process.env.REACT_APP_WEB ? "100%" : "100vh"};
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content 1fr min-content min-content;
