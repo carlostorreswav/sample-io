@@ -8,14 +8,28 @@ const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid red;
-  height: calc(100vh - 2px);
+  min-height: calc(100vh - 2px);
   margin: 0px;
   overflow: hidden;
 `
 
 const MainScreenWrapper = styled.div`
-  height: 94%;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+`
+
+const WebScreenWrapper = styled.div`
+  width: 100%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+`
+
+const MainBox = styled.div`
+  width: 100%;
+  height: 96vh;
+  margin: 1%;
+  display: flex;
+  @media (max-width: 768px) {
+    display: block;
+  }
 `
 
 const WebIndex = () => {
@@ -23,9 +37,14 @@ const WebIndex = () => {
     <>
       <ToneProvider>
         <MainWrapper>
-          <MainScreenWrapper>
-            <MainScreen />
-          </MainScreenWrapper>
+          <MainBox>
+            <WebScreenWrapper>
+              <h1>WEB</h1>
+            </WebScreenWrapper>
+            <MainScreenWrapper>
+              <MainScreen />
+            </MainScreenWrapper>
+          </MainBox>
         </MainWrapper>
       </ToneProvider>
     </>
