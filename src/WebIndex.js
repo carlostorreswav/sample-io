@@ -113,7 +113,9 @@ const WebIndex = () => {
               </MainScreenWrapper>
               <WebScreenWrapper>
                 <WebButton minWidth="250px">
-                  DOWNLOAD LATEST INSTALLER <br /> .DMG
+                  <a href="https://hazeltest.vercel.app/download">
+                    DOWNLOAD LATEST INSTALLER <br /> .DMG
+                  </a>
                 </WebButton>
               </WebScreenWrapper>
             </MainBox>
