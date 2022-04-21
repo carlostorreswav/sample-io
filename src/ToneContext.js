@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useRef, useState } from "react"
+import { getSampleFolder, getSamples } from "./WebCore"
 
 export const ToneContext = createContext({})
 
@@ -120,9 +121,18 @@ export const ToneProvider = ({ children }) => {
     await setCustomFolder(idArray, { FolderArray: Folders }, true)
   }
 
+  const webOpenFolder = async () => {
+    // alert("webOpenFolder")
+    const Folder = await getSampleFolder()
+    const Samples = await getSamples(Folder)
+    console.log("Samples", Samples)
+  }
+
   const openFolder = async () => {
     startAudio()
-    const Folders = await window.electron.showDialog()
+    const Folders = process.env.REACT_APP_WEB
+      ? await webOpenFolder()
+      : await window.electron.showDialog()
     const idArray = Folders.map(item => item.folderID)
     await setCustomFolder(idArray, { FolderArray: Folders })
   }
