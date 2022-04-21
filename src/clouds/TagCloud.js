@@ -18,6 +18,10 @@ const TagTitle = styled.div`
   transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
 `
 
+const HR = styled.hr`
+  display: ${p => (p.items ? "block" : "none")};
+`
+
 const CloudTagMemo = ({ Cloud, CloudFilter }) => {
   const [selected, setSelected] = useState(0)
   const [open, setOpen] = useState(true)
@@ -44,7 +48,7 @@ const CloudTagMemo = ({ Cloud, CloudFilter }) => {
             </TagTitle>
           ))}
         </Flex>
-        <hr />
+        <HR items={Cloud} />
         <Flex>
           {Cloud &&
             Cloud[selected]?.tags?.map((Tag, TagIdx) => (
@@ -53,7 +57,7 @@ const CloudTagMemo = ({ Cloud, CloudFilter }) => {
               </TagTitle>
             ))}
         </Flex>
-        <hr />
+        <HR items={Cloud} />
       </CloudFlex>
     </Module>
   )
