@@ -8,16 +8,21 @@ const MainFlex = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 99vh;
 `
 
 const MainWrapper = styled.div`
   width: 100%;
-  /* border: 1px solid red; */
-  /* min-height: calc(100vh - 12px); */
   margin: 1%;
-  /* overflow: hidden; */
-  /* height: 100vh; */
+  height: 100%;
+`
+
+const MainBox = styled.div`
+  width: 100%;
+  display: flex;
+  @media (max-width: 768px) {
+    display: block;
+  }
 `
 
 const MainScreenWrapper = styled.div`
@@ -25,23 +30,16 @@ const MainScreenWrapper = styled.div`
   width: 200px;
   min-width: 200px;
   margin: 20px auto;
-  height: 80%;
+  height: 80vh;
 `
 
 const WebScreenWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-`
-
-const MainBox = styled.div`
-  width: 100%;
-  /* height: calc(100% - 100px); */
-  height: 90vh;
-  /* padding: 1%; */
-  display: flex;
+  margin: 30px;
   @media (max-width: 768px) {
-    display: block;
+    width: auto;
   }
 `
 
@@ -112,7 +110,7 @@ const WebIndex = () => {
                 <MainScreen />
               </MainScreenWrapper>
               <WebScreenWrapper>
-                <WebButton minWidth="250px">
+                <WebButton minWidth="200px">
                   <a href="https://hazeltest.vercel.app/download">
                     DOWNLOAD LATEST INSTALLER <br /> .DMG
                   </a>

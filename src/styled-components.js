@@ -30,7 +30,6 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
 }
 `
 
