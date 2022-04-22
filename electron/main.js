@@ -195,6 +195,8 @@ ipcMain.handle("getClouds", async (event, sampleArray) => {
 
 ipcMain.handle("getData", async event => {
   const userData = store.get("userData")
+  // json = JSON.stringify(userData) //convert it back to json
+  // fs.writeFile(path.join(__dirname, "jsonFile.json"), json, "utf8", () => console.log("ok")) // write it back
   return userData
 })
 

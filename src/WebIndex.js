@@ -26,9 +26,9 @@ const MainBox = styled.div`
 `
 
 const MainScreenWrapper = styled.div`
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.5);
   width: 200px;
-  min-width: 200px;
+  min-width: 230px;
   margin: 20px auto;
   height: 80vh;
 `
@@ -111,7 +111,10 @@ const WebIndex = () => {
               </MainScreenWrapper>
               <WebScreenWrapper>
                 <WebButton minWidth="200px">
-                  <a href="https://hazeltest.vercel.app/download">
+                  <a
+                    href="https://hazeltest.vercel.app/download"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
                     DOWNLOAD LATEST INSTALLER <br /> .DMG
                   </a>
                 </WebButton>
