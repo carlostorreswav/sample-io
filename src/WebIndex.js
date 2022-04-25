@@ -30,7 +30,7 @@ const MainScreenWrapper = styled.div`
   width: 200px;
   min-width: 230px;
   margin: 20px auto;
-  height: 80vh;
+  height: 90vh;
 `
 
 const WebScreenWrapper = styled.div`
