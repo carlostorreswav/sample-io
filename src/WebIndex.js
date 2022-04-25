@@ -148,6 +148,7 @@ const WebIndex = () => {
                       href="https://github.com/carlostorreswav/sample-io"
                       style={{ textDecoration: "none", color: "inherit" }}
                       target="_blank"
+                      rel="noreferrer"
                     >
                       GitHub
                     </a>
