@@ -20,7 +20,7 @@ const MainWrapper = styled.div`
 const MainBox = styled.div`
   width: 100%;
   display: flex;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     display: block;
   }
 `
@@ -38,7 +38,7 @@ const WebScreenWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 30px;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: auto;
   }
 `
@@ -62,6 +62,7 @@ const WebButton = styled.div`
   cursor: pointer;
   padding: 4px 8px;
   margin: 5px ${p => p.center && "auto"};
+  margin: 0 auto;
   transition: padding 0.3s ease;
   display: flex;
   justify-content: center;
@@ -84,6 +85,16 @@ const WebButton = styled.div`
   text-transform: ${p => (p.uppercase ? "uppercase" : "none")};
 `
 
+const CustomFrame = styled.iframe`
+  width: 500px;
+  height: 300px;
+  border: none;
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.5);
+  @media (max-width: 1200px) {
+    width: 350px;
+  }
+`
+
 const WebIndex = () => {
   return (
     <>
@@ -103,21 +114,26 @@ const WebIndex = () => {
                   <H1>weekly automatic updates</H1>
                   <br />
                   <br />
-                  <H1>This a quick demo of the software</H1>
+                  <H1>This a quick demo of the software with no sound</H1>
                 </div>
               </WebScreenWrapper>
               <MainScreenWrapper>
                 <MainScreen />
               </MainScreenWrapper>
               <WebScreenWrapper>
-                <WebButton minWidth="200px">
-                  <a
-                    href="https://hazeltest.vercel.app/download"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    DOWNLOAD LATEST INSTALLER <br /> .DMG
-                  </a>
-                </WebButton>
+                <div>
+                  <WebButton minWidth="200px">
+                    <a
+                      href="https://hazeltest.vercel.app/download"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      DOWNLOAD .DMG INSTALLER
+                    </a>
+                  </WebButton>
+                  <br />
+                  <br />
+                  <CustomFrame src="https://hazeltest.vercel.app/"></CustomFrame>
+                </div>
               </WebScreenWrapper>
             </MainBox>
           </MainWrapper>
