@@ -55,7 +55,7 @@ const H1 = styled.h1`
 `
 
 const WebButton = styled.div`
-  height: 100px;
+  height: ${props => (props.short ? "40px" : "80px")};
   font-size: 2em;
   user-select: none;
   border-radius: 4px;
@@ -133,6 +133,16 @@ const WebIndex = () => {
                   <br />
                   <br />
                   <CustomFrame src="https://hazeltest.vercel.app/"></CustomFrame>
+                  <br />
+                  <br />
+                  <WebButton short>
+                    <a
+                      href="https://github.com/carlostorreswav/sample-io"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      Github Page
+                    </a>
+                  </WebButton>
                 </div>
               </WebScreenWrapper>
             </MainBox>
