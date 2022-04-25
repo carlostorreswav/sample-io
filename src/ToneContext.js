@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useRef, useState } from "react"
 import { getSampleFolder, getSamples } from "./WebCore"
-import { defaultFolder } from "./defaultFolder"
+// import { defaultFolder } from "./defaultFolder"
 
 export const ToneContext = createContext({})
 
@@ -116,8 +116,15 @@ export const ToneProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const getDefaultFolder = async () => {
+    const { defaultFolder } = await import("./defaultFolder")
+    return defaultFolder
+  }
+
   const prevStart = async () => {
-    const Folders = !process.env.REACT_APP_WEB ? await window.electron.getData() : defaultFolder
+    const Folders = !process.env.REACT_APP_WEB
+      ? await window.electron.getData()
+      : await getDefaultFolder()
     const idArray = Folders.map(item => item.folderID)
     await setCustomFolder(idArray, { FolderArray: Folders }, true)
   }
