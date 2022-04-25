@@ -15,6 +15,7 @@ const MainWrapper = styled.div`
   width: 100%;
   margin: 1%;
   height: 100%;
+  max-width: 1400px;
 `
 
 const MainBox = styled.div`
