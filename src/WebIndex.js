@@ -26,11 +26,14 @@ const MainBox = styled.div`
 `
 
 const MainScreenWrapper = styled.div`
-  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 10px 20px 50px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 1px solid #645f6822;
   width: 200px;
   min-width: 230px;
   margin: 20px auto;
   height: 85vh;
+  overflow: hidden;
 `
 
 const WebScreenWrapper = styled.div`
@@ -96,6 +99,33 @@ const CustomFrame = styled.iframe`
   transition: height 0.5s ease-in-out;
 `
 
+const MainMenuBox = styled.div`
+  display: flex;
+  height: 28px;
+  background-color: #2c2632;
+  border: 1px solid #645f6822;
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  margin: 4px;
+`
+
+const MenuButton = styled.div`
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: ${p => p.color};
+  margin: 4px;
+`
+
+const MenuTitle = styled.div`
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 6px 21px;
+`
+
 const WebIndex = () => {
   const [open, setOpen] = React.useState(false)
   React.useEffect(() => {
@@ -125,6 +155,14 @@ const WebIndex = () => {
                 </div>
               </WebScreenWrapper>
               <MainScreenWrapper>
+                <MainMenuBox>
+                  <ButtonWrapper>
+                    <MenuButton color="#ED685D" />
+                    <MenuButton color="#F5C154" />
+                    <MenuButton color="#5CC95D" />
+                  </ButtonWrapper>
+                  <MenuTitle>sample-io</MenuTitle>
+                </MainMenuBox>
                 <MainScreen />
               </MainScreenWrapper>
               <WebScreenWrapper>
