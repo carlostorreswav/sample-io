@@ -32,7 +32,8 @@
     "prepared": "rm -rf dist && rm -rf build && yarn patch && yarn package",
     "release": "gh release create $npm_package_version -t $npm_package_version -n $npm_package_version",
     "upload": "gh release upload $npm_package_version dist/sample-io-${npm_package_version}-mac.zip dist/sample-io-${npm_package_version}.dmg",
-    "bundle": "yarn prepared && yarn release && yarn upload"
+    "bundle": "yarn prepared && yarn release && yarn upload",
+    "total": "git add . && git commit -m 'newRelease' && git push && yarn bundle"
   },
   "build": {
     "appId": "com.example.electron-react",

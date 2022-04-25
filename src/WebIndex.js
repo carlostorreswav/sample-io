@@ -87,15 +87,22 @@ const WebButton = styled.div`
 
 const CustomFrame = styled.iframe`
   width: 500px;
-  height: 300px;
+  height: ${p => (p.open ? "300px" : "0px")};
   border: none;
   box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.5);
   @media (max-width: 1200px) {
     width: 350px;
   }
+  transition: height 0.5s ease-in-out;
 `
 
 const WebIndex = () => {
+  const [open, setOpen] = React.useState(false)
+  React.useEffect(() => {
+    setTimeout(() => {
+      setOpen(true)
+    }, 100)
+  }, [])
   return (
     <>
       <ToneProvider>
@@ -132,15 +139,17 @@ const WebIndex = () => {
                   </WebButton>
                   <br />
                   <br />
-                  <CustomFrame src="https://hazeltest.vercel.app/"></CustomFrame>
+                  <CustomFrame open={open} src="https://hazeltest.vercel.app/"></CustomFrame>
+                  <br />
                   <br />
                   <br />
                   <WebButton short>
                     <a
                       href="https://github.com/carlostorreswav/sample-io"
                       style={{ textDecoration: "none", color: "inherit" }}
+                      target="_blank"
                     >
-                      Github Page
+                      GitHub
                     </a>
                   </WebButton>
                 </div>
