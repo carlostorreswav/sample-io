@@ -43,7 +43,7 @@ const WebScreenWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 30px;
+  margin: 40px;
   @media (max-width: 1000px) {
     width: auto;
   }
@@ -58,6 +58,7 @@ const H1 = styled.h1`
   font-size: 2em;
   font-weight: bold;
   padding-top: 8px;
+  margin: ${props => props.margin || "15px"} auto;
 `
 
 const WebButton = styled.div`
@@ -92,7 +93,7 @@ const WebButton = styled.div`
 `
 
 const CustomFrame = styled.iframe`
-  width: 500px;
+  width: 460px;
   height: ${p => (p.open ? "300px" : "0px")};
   border: none;
   box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.5);
@@ -143,7 +144,7 @@ const WebIndex = () => {
         <MainFlex>
           <MainWrapper>
             <MainTitle>
-              <h1>sample-io</h1>
+              <H1 margin="6px">sample-io</H1>
             </MainTitle>
             <MainBox>
               <WebScreenWrapper>
