@@ -38,6 +38,7 @@
   "build": {
     "appId": "com.example.electron-react",
     "productName": "sample-io",
+    "icon": "build/electron/icons/icon.icns",
     "files": [
       "build/**/*",
       "node_modules/**/*"
