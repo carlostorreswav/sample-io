@@ -9,6 +9,7 @@ const MainFlex = styled.div`
   align-items: center;
   width: 100%;
   height: 99vh;
+  background-color: #20272e;
 `
 
 const MainWrapper = styled.div`
@@ -35,6 +36,7 @@ const MainScreenWrapper = styled.div`
   margin: 20px auto;
   height: 85vh;
   overflow: hidden;
+  background-color: #23272e;
 `
 
 const WebScreenWrapper = styled.div`
@@ -98,6 +100,7 @@ const CustomFrame = styled.iframe`
     width: 350px;
   }
   transition: height 0.5s ease-in-out;
+  border-radius: 10px;
 `
 
 const MainMenuBox = styled.div`

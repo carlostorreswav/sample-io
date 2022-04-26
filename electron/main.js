@@ -51,6 +51,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 220,
     height: 1400,
+    icon: path.join(__dirname, "/icons/icon.icns"),
     minWidth: 180,
     maxWidth: 400,
     show: false,
@@ -80,7 +81,7 @@ const createWindow = () => {
   !app.isPackaged && mainWindow.webContents.openDevTools({ mode: "detach" })
 }
 
-const iconName = path.join(__dirname, "drag-and-drop.png")
+const iconName = path.join(__dirname, "./icons/transparent.png")
 
 ipcMain.on("ondragstart", async (event, file) => {
   event.sender.startDrag({
