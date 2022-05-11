@@ -157,6 +157,15 @@ const WebIndex = () => {
                   <br />
                   <br />
                   <H1>This a quick demo of the software with no sound</H1>
+<br/>
+    <br/>
+<H1>Next feature:  <a
+                      href="https://github.com/sergree/matchering"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      MATCHERING
+                    </a> integration</H1>
+    <br/>
                 </div>
               </WebScreenWrapper>
               <MainScreenWrapper>
