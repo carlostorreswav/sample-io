@@ -8,6 +8,7 @@
   "dependencies": {
     "electron-store": "^8.0.1",
     "music-metadata": "^7.12.2",
+    "python-shell": "^3.0.1",
     "rc-slider": "^10.0.0-alpha.6",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -33,7 +34,8 @@
     "release": "gh release create $npm_package_version -t $npm_package_version -n $npm_package_version",
     "upload": "gh release upload $npm_package_version dist/sample-io-${npm_package_version}-mac.zip dist/sample-io-${npm_package_version}.dmg",
     "bundle": "yarn prepared && yarn release && yarn upload",
-    "total": "git add . && git commit -m 'newRelease' && git push && yarn bundle"
+    "total": "git add . && git commit -m 'newRelease' && git push && yarn bundle",
+    "python": "cd electron && python3 -m venv venv && source venv/bin/activate && python3 -m pip install -U matchering"
   },
   "build": {
     "appId": "com.example.electron-react",

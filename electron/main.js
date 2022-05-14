@@ -7,6 +7,26 @@ const Store = require("electron-store")
 const store = new Store()
 var crypto = require("crypto")
 
+// PYTHON SHELL
+let { PythonShell } = require("python-shell")
+
+const pathMaker = args => args.map(arg => path.join(__dirname, arg))
+
+let options = {
+  mode: "text",
+  pythonPath: path.join(__dirname, "./python/env/bin/python3"),
+  pythonOptions: ["-u"], // get print results in real-time
+  args: pathMaker(["python/s1.wav", "python/s2.wav", "python/r1.wav", "python/r2.wav"]),
+}
+
+const startPython = async () => {
+  PythonShell.run(path.join(__dirname, "./python/my_script.py"), options, function (err, results) {
+    if (err) throw err
+    // results is an array consisting of messages collected during execution
+    console.log("results: %j", results)
+  })
+}
+
 let mainWindow
 
 if (!app.isPackaged) {
@@ -72,6 +92,7 @@ const createWindow = () => {
   mainWindow.once("ready-to-show", () => {
     mainWindow.show()
     startAutoUpdater()
+    startPython()
   })
 
   mainWindow.on("closed", () => {
