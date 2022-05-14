@@ -6,14 +6,12 @@ const { getSampleCloud, getTagCloud, getTempoCloud, getToneCloud } = require("./
 const Store = require("electron-store")
 const store = new Store()
 var crypto = require("crypto")
-// var fixPath = require("fix-path")
-// fixPath()
 
 // PYTHON SHELL
 let { PythonShell } = require("python-shell")
 
 const pathMaker = args => args.map(arg => path.join(__dirname, arg))
-const pythonScript = path.join(__dirname, "./python/my_script.py")
+const pythonScript = path.join(__dirname, "/python/my_script.py")
 
 // const startPython = async () => {
 //   PythonShell.run(path.join(__dirname, "./python/my_script.py"), options, function (err, results) {

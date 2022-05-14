@@ -7,7 +7,6 @@
   "private": true,
   "dependencies": {
     "electron-store": "^8.0.1",
-    "fix-path": "^4.0.0",
     "music-metadata": "^7.12.2",
     "python-shell": "^3.0.1",
     "rc-slider": "^10.0.0",
