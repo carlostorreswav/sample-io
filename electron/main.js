@@ -6,8 +6,8 @@ const { getSampleCloud, getTagCloud, getTempoCloud, getToneCloud } = require("./
 const Store = require("electron-store")
 const store = new Store()
 var crypto = require("crypto")
-var fixPath = require("fix-path")
-fixPath()
+// var fixPath = require("fix-path")
+// fixPath()
 
 // PYTHON SHELL
 let { PythonShell } = require("python-shell")
@@ -23,7 +23,7 @@ const pythonScript = path.join(__dirname, "./python/my_script.py")
 //   })
 // }
 
-const pythonPath = path.join(__dirname, "./python/env/bin/python3")
+const pythonPath = path.join(__dirname, "./python/env/bin/python2")
 
 let mainWindow
 
