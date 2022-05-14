@@ -11,21 +11,15 @@ var crypto = require("crypto")
 let { PythonShell } = require("python-shell")
 
 const pathMaker = args => args.map(arg => path.join(__dirname, arg))
+const pythonScript = path.join(__dirname, "./python/my_script.py")
 
-let options = {
-  mode: "text",
-  pythonPath: path.join(__dirname, "./python/env/bin/python3"),
-  pythonOptions: ["-u"], // get print results in real-time
-  args: pathMaker(["python/s1.wav", "python/s2.wav", "python/r1.wav", "python/r2.wav"]),
-}
-
-const startPython = async () => {
-  PythonShell.run(path.join(__dirname, "./python/my_script.py"), options, function (err, results) {
-    if (err) throw err
-    // results is an array consisting of messages collected during execution
-    console.log("results: %j", results)
-  })
-}
+// const startPython = async () => {
+//   PythonShell.run(path.join(__dirname, "./python/my_script.py"), options, function (err, results) {
+//     if (err) throw err
+//     // results is an array consisting of messages collected during execution
+//     console.log("results: %j", results)
+//   })
+// }
 
 let mainWindow
 
@@ -92,7 +86,7 @@ const createWindow = () => {
   mainWindow.once("ready-to-show", () => {
     mainWindow.show()
     startAutoUpdater()
-    startPython()
+    // startPython()
   })
 
   mainWindow.on("closed", () => {
@@ -201,6 +195,26 @@ ipcMain.handle("replaceTrack", async (_, Track) => {
   // console.log("newArray", newArray)
   store.set("userData", newArray)
   return newArray
+})
+
+ipcMain.handle("startMatch", async (_, match) => {
+  const options = {
+    mode: "text",
+    pythonPath: path.join(__dirname, "./python/env/bin/python3"),
+    pythonOptions: ["-u"], // get print results in real-time
+    args: [
+      match.target.path,
+      match.reference.path,
+      match.target.path.replace(".wav", "_processed.wav"),
+    ],
+  }
+  return new Promise((resolve, reject) => {
+    PythonShell.run(pythonScript, options, function (err, results) {
+      if (err) throw err
+      // results is an array consisting of messages collected during execution
+      resolve(match.target.path.replace(".wav", "_processed.wav"))
+    })
+  })
 })
 
 ipcMain.handle("getClouds", async (event, sampleArray) => {

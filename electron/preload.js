@@ -11,6 +11,7 @@ contextBridge.exposeInMainWorld("electron", {
   deleteFolder: async folderID => ipcRenderer.invoke("deleteFolder", folderID),
   rescanFolder: async folderID => ipcRenderer.invoke("rescanFolder", folderID),
   replaceTrack: async Track => ipcRenderer.invoke("replaceTrack", Track),
+  startMatch: async match => ipcRenderer.invoke("startMatch", match),
   receive: (channel, func) => {
     let validChannels = ["sampleProcessing", "CLOG"]
     if (validChannels.includes(channel)) {
