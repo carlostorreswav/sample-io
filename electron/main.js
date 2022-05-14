@@ -21,6 +21,8 @@ const pythonScript = path.join(__dirname, "./python/my_script.py")
 //   })
 // }
 
+const pythonPath = path.join(__dirname, "./python/env/bin/python")
+
 let mainWindow
 
 if (!app.isPackaged) {
@@ -200,7 +202,7 @@ ipcMain.handle("replaceTrack", async (_, Track) => {
 ipcMain.handle("startMatch", async (_, match) => {
   const options = {
     mode: "text",
-    pythonPath: path.join(__dirname, "./python/env/bin/python3"),
+    pythonPath: pythonPath,
     pythonOptions: ["-u"], // get print results in real-time
     args: [
       match.target.path,
