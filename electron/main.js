@@ -204,7 +204,7 @@ ipcMain.handle("replaceTrack", async (_, Track) => {
 ipcMain.handle("startMatch", async (_, match) => {
   const options = {
     mode: "text",
-    pythonPath: pythonPath,
+    pythonPath: "python3",
     pythonOptions: ["-u"], // get print results in real-time
     args: [
       match.target.path,
