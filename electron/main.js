@@ -21,7 +21,7 @@ const pythonScript = path.join(__dirname, "./python/my_script.py")
 //   })
 // }
 
-const pythonPath = path.join(__dirname, "./python/env/bin/python")
+const pythonPath = path.join(__dirname, "./python/env/bin/python2")
 
 let mainWindow
 
