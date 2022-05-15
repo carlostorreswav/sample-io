@@ -44,10 +44,6 @@
     "files": [
       "build/**/*",
       "node_modules/**/*"
-    ],
-    "asar": true,
-    "asarUnpack": [
-      "electron/python/my_script.py"
     ]
   },
   "eslintConfig": {

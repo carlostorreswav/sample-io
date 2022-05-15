@@ -10,18 +10,8 @@ var crypto = require("crypto")
 // PYTHON SHELL
 let { PythonShell } = require("python-shell")
 
-const pathMaker = args => args.map(arg => path.join(__dirname, arg))
-const pythonScript = path.join(__dirname, "/python/my_script.py")
-
-// const startPython = async () => {
-//   PythonShell.run(path.join(__dirname, "./python/my_script.py"), options, function (err, results) {
-//     if (err) throw err
-//     // results is an array consisting of messages collected during execution
-//     console.log("results: %j", results)
-//   })
-// }
-
-const pythonPath = path.join(__dirname, "./python/env/bin/python2")
+const pythonScript = path.join(__dirname, "../build/electron/python/my_script.py")
+const pythonPath = path.join(__dirname, "../build/electron/python/env/bin/python3")
 
 let mainWindow
 
@@ -202,7 +192,7 @@ ipcMain.handle("replaceTrack", async (_, Track) => {
 ipcMain.handle("startMatch", async (_, match) => {
   const options = {
     mode: "text",
-    pythonPath: "python3",
+    pythonPath: pythonPath,
     pythonOptions: ["-u"], // get print results in real-time
     args: [
       match.target.path,
