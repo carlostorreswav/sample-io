@@ -200,12 +200,29 @@ ipcMain.handle("startMatch", async (_, match) => {
       match.target.path.replace(".wav", "_processed.wav"),
     ],
   }
+  const args = [
+    match.target.path,
+    match.reference.path,
+    match.target.path.replace(".wav", "_processed.wav"),
+  ]
   return new Promise((resolve, reject) => {
-    PythonShell.run(pythonScript, options, function (err, results) {
-      if (err) throw err
-      // results is an array consisting of messages collected during execution
-      resolve(match.target.path.replace(".wav", "_processed.wav"))
-    })
+    // PythonShell.run(pythonScript, options, function (err, results) {
+    //   if (err) throw err
+    //   // results is an array consisting of messages collected during execution
+    //   resolve(match.target.path.replace(".wav", "_processed.wav"))
+    // })
+    // require("child_process").execFile("./pb/dist/main")
+    require("child_process").execFile(
+      path.join(__dirname, "pyscript"),
+      args,
+      (err, stdout, stderr) => {
+        if (err) {
+          console.error(err)
+          reject(err)
+        }
+        resolve(match.target.path.replace(".wav", "_processed.wav"))
+      }
+    )
   })
 })
 

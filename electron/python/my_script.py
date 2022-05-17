@@ -1,9 +1,9 @@
 import matchering as mg
 import sys
 
-# Sending all log messages to the default print function
-# Just delete the following line to work silently
-mg.log(print)
+# # Sending all log messages to the default print function
+# # Just delete the following line to work silently
+# mg.log(print)
 
 def runStart(s1, s2, r1):
     mg.process(
@@ -17,8 +17,4 @@ def runStart(s1, s2, r1):
     ],
     )
 
-if __name__ == "__main__":
-    s1= sys.argv[1] 
-    s2= sys.argv[2] 
-    r1= sys.argv[3] 
-    runStart(s1, s2, r1)
+runStart(sys.argv[1], sys.argv[2] , sys.argv[3])

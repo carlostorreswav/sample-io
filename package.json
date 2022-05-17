@@ -30,12 +30,13 @@
     "build-electron": "mkdir build/src && cp -r electron/. build/electron",
     "package": "yarn build-react && yarn build-electron && electron-builder build -c.extraMetadata.main=build/electron/main.js --publish never",
     "patch": "npm version patch && git push",
-    "prepared": "rm -rf dist && rm -rf build && yarn patch && yarn package",
+    "prepared": "rm -rf dist && rm -rf build && yarn pyinstall && yarn patch && yarn package",
     "release": "gh release create $npm_package_version -t $npm_package_version -n $npm_package_version",
     "upload": "gh release upload $npm_package_version dist/sample-io-${npm_package_version}-mac.zip dist/sample-io-${npm_package_version}.dmg",
     "bundle": "yarn prepared && yarn release && yarn upload",
     "total": "git add . && git commit -m 'newRelease' && git push && yarn bundle",
-    "python": "cd electron && python3 -m venv venv && source venv/bin/activate && python3 -m pip install -U matchering"
+    "python": "cd electron && python3 -m venv venv && source venv/bin/activate && python3 -m pip install -U matchering",
+    "pyinstall": "cd electron/python && source env/bin/activate && pyinstaller --hidden-import matchering --onefile my_script.py --name pyscript --distpath ../../electron/ -y"
   },
   "build": {
     "appId": "com.example.electron-react",
