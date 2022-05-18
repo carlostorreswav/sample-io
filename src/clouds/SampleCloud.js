@@ -82,6 +82,10 @@ const IconDiv = styled.div`
   margin: 2px;
 `
 
+const CloudParent = styled.div`
+  min-height: ${p => (p.onFilter ? "500px" : "none")};
+`
+
 const Flex = styled.div`
   display: flex;
   align-items: center;
@@ -168,41 +172,76 @@ const SampleCloud = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const [filter, setFilter] = useState("")
+
+  const changeFilter = string => {
+    setFilter(string)
+  }
+
+  const handleClear = () => {
+    setFilter("")
+  }
+
+  const ArrayName = Name =>
+    Name.split(".")[0]
+      .toLowerCase()
+      .split(/,| |_| |-/)
+
+  const getFilter = str => {
+    const strClean = str.toLowerCase().replace(/\s/g, "")
+    const results = Clouds.Samples.filter(item => {
+      const KeyWords = ArrayName(item.name)
+      const match = KeyWords.filter(word => word.includes(strClean))
+      return match.length > 0
+    })
+    return results
+  }
+
+  const getCloud = filter.length > 0 ? getFilter(filter) : Clouds.SamplesFiltered
+
   return (
     <Module>
       <MenuLabel open={open} center bold onClick={() => setOpen(!open)}>
         Samples
       </MenuLabel>
       <CloudFlex open={open} noFlex>
-        <Searcher changeRef={() => (SearchRef.current = true)} />
-        {Clouds.SamplesFiltered &&
-          Clouds.SamplesFiltered.slice(0, 50).map((TrackItem, TrackIdx) => (
-            <MainDiv
-              id={`Track-${TrackIdx}`}
-              key={TrackIdx}
-              onClick={() => handlePlayClick(TrackItem, TrackIdx)}
-              // selected={index === TrackIdx}
-              selected={getSelected(TrackItem, TrackIdx)}
-              draggable
-              onDragStart={e => handleOnDrag(e, TrackItem, stopPlayer)}
-              actual={player.actual === TrackItem.id}
-            >
-              <NameDiv>
-                <PureName>{beautify(TrackItem.name)}</PureName>
+        <Searcher
+          changeRef={() => (SearchRef.current = true)}
+          handleClear={handleClear}
+          onChange={changeFilter}
+        />
+        num samples: {JSON.stringify(getCloud?.length)}
+        <hr />
+        <CloudParent onFilter={filter.length > 0 && getCloud?.length <= 50}>
+          {Clouds.SamplesFiltered &&
+            getCloud?.slice(0, 100).map((TrackItem, TrackIdx) => (
+              <MainDiv
+                id={`Track-${TrackIdx}`}
+                key={TrackIdx}
+                onClick={() => handlePlayClick(TrackItem, TrackIdx)}
+                // selected={index === TrackIdx}
+                selected={getSelected(TrackItem, TrackIdx)}
+                draggable
+                onDragStart={e => handleOnDrag(e, TrackItem, stopPlayer)}
+                actual={player.actual === TrackItem.id}
+              >
+                <NameDiv>
+                  <PureName>{beautify(TrackItem.name)}</PureName>
 
-                <Flex>
-                  {TrackItem.metadata.duration && (
-                    <TimeDiv>{TrackItem.metadata.duration.toFixed(2)}s</TimeDiv>
-                  )}
-                  <IconDiv
-                    id={`Track-Like-${TrackIdx}`}
-                    liked={TrackItem?.liked}
-                    onClick={e => handleLikeClick(e, TrackItem)}
-                  />
-                </Flex>
-              </NameDiv>
-            </MainDiv>
-          ))}
+                  <Flex>
+                    {TrackItem.metadata.duration && (
+                      <TimeDiv>{TrackItem.metadata.duration.toFixed(2)}s</TimeDiv>
+                    )}
+                    <IconDiv
+                      id={`Track-Like-${TrackIdx}`}
+                      liked={TrackItem?.liked}
+                      onClick={e => handleLikeClick(e, TrackItem)}
+                    />
+                  </Flex>
+                </NameDiv>
+              </MainDiv>
+            ))}
+        </CloudParent>
       </CloudFlex>
     </Module>
   )

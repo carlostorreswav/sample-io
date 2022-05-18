@@ -1,9 +1,11 @@
-import { useContext, useState } from "react"
+// import { useContext, useState } from "react"
 import styled from "styled-components"
-import { ToneContext } from "../ToneContext"
+import { Button } from "../styled-components"
+// import { ToneContext } from "../ToneContext"
 
 const CustomInput = styled.input`
   border: none;
+  width: 100px;
   border-radius: 4px;
   padding: 4px 8px;
   background-color: #00000077;
@@ -25,31 +27,32 @@ const CustomForm = styled.form`
 const SearchDiv = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 `
 
 const Searcher = props => {
-  const { changeRef } = props
-  const { doSearch } = useContext(ToneContext)
-  const [str, setStr] = useState("")
+  const { changeRef, onChange } = props
+  // const { doSearch } = useContext(ToneContext)
+  // const [str, setStr] = useState("")
 
-  const handleSearch = e => {
-    e.preventDefault()
-    e.stopPropagation()
-    const res = doSearch(str.toLowerCase())
-    console.log("res", res)
-  }
+  // const handleSearch = e => {
+  //   e.preventDefault()
+  //   e.stopPropagation()
+  //   const res = doSearch(str.toLowerCase())
+  //   console.log("res", res)
+  // }
 
   return (
     <>
       <SearchDiv>
-        <CustomForm onSubmit={e => handleSearch(e)}>
-          <CustomInput
-            type="text"
-            onChange={e => setStr(e.target.value)}
-            onClick={e => changeRef()}
-            placeholder="Search"
-          ></CustomInput>
-        </CustomForm>
+        <CustomInput
+          type="text"
+          onChange={e => onChange(e.target.value)}
+          onClick={e => changeRef()}
+          placeholder="Search"
+        ></CustomInput>
+        <Button noMinWidth>Clear</Button>
       </SearchDiv>
       {/* {numResults ? <Label px={"12px"}>{numResults} results</Label> : null} */}
     </>

@@ -54,23 +54,23 @@ export const ToneProvider = ({ children }) => {
     setPlayer(p => ({ ...p, playing: false, actual: null }))
   }
 
-  const ArrayName = Name => {
-    const RawName = Name.split(".")[0]
-    const NameLow = RawName.toLowerCase()
-    const KeyWords = NameLow.split(/,| |_| |-/)
-    return KeyWords
-  }
+  // const ArrayName = Name => {
+  //   const RawName = Name.split(".")[0]
+  //   const NameLow = RawName.toLowerCase()
+  //   const KeyWords = NameLow.split(/,| |_| |-/)
+  //   return KeyWords
+  // }
 
-  const doSearch = str => {
-    const result = Clouds.Samples.filter(item => {
-      const KeyWords = ArrayName(item.name)
-      const match = KeyWords.filter(word => word.includes(str))
-      return match.length > 0
-    })
-    const justIds = result.map(item => item.id)
-    CloudFilter(justIds)
-    return justIds.length === 0 ? "No" : justIds.length
-  }
+  // const doSearch = str => {
+  //   const result = Clouds.Samples.filter(item => {
+  //     const KeyWords = ArrayName(item.name)
+  //     const match = KeyWords.filter(word => word.includes(str))
+  //     return match.length > 0
+  //   })
+  //   const justIds = result.map(item => item.id)
+  //   CloudFilter(justIds)
+  //   return justIds.length === 0 ? "No" : justIds.length
+  // }
 
   const CloudFilter = ids => {
     setFilter(ids)
@@ -281,7 +281,7 @@ export const ToneProvider = ({ children }) => {
         Filter,
         setFilter,
         CloudFilter,
-        doSearch,
+        // doSearch,
         selFx,
         setSelFx,
         setCustomFolder,
