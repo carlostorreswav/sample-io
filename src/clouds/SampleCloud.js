@@ -191,7 +191,7 @@ const SampleCloud = () => {
     const strClean = str.toLowerCase().replace(/\s/g, "")
     const results = Clouds.Samples.filter(item => {
       const KeyWords = ArrayName(item.name)
-      const match = KeyWords.filter(word => word.includes(strClean))
+      const match = KeyWords.filter(word => word.includes(strClean) || strClean.includes(word))
       return match.length > 0
     })
     return results
