@@ -62,7 +62,17 @@ const Matchering = () => {
 
   return (
     <Module>
-      <MenuLabel open={open} center bold onClick={() => setOpen(!open)}>
+      <MenuLabel
+        open={open}
+        center
+        bold
+        onClick={() =>
+          !open
+            ? window.confirm("this feature is on development and wont work for now") &&
+              setOpen(!open)
+            : setOpen(false)
+        }
+      >
         MATCHERING (on development)
       </MenuLabel>
       <CloudFlex open={open}>
@@ -124,7 +134,7 @@ const Matchering = () => {
         </CardFlex>
         <Card>
           {match.reference.path && match.target.path && !match.result.path && (
-            <Button onClick={runMatch}>
+            <Button center onClick={runMatch}>
               <h2>RUN</h2>
             </Button>
           )}
