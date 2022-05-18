@@ -39,7 +39,7 @@ const InputContainter = styled.div`
 `
 
 const Matchering = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const [match, setMatch] = useState({
     reference: { name: "", path: "" },
     target: { name: "", path: "" },
@@ -63,7 +63,7 @@ const Matchering = () => {
   return (
     <Module>
       <MenuLabel open={open} center bold onClick={() => setOpen(!open)}>
-        MATCHERING
+        MATCHERING (on development)
       </MenuLabel>
       <CloudFlex open={open}>
         <CardFlex>
