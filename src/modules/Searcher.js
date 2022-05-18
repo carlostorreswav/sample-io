@@ -19,10 +19,10 @@ const CustomInput = styled.input`
   }
 `
 
-const CustomForm = styled.form`
-  width: 100%;
-  margin-bottom: 4px;
-`
+// const CustomForm = styled.form`
+//   width: 100%;
+//   margin-bottom: 4px;
+// `
 
 const SearchDiv = styled.div`
   display: flex;
