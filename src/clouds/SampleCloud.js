@@ -187,11 +187,28 @@ const SampleCloud = () => {
       .toLowerCase()
       .split(/,| |_| |-/)
 
+  const getSimilars = (strClean, wordSearch) => {
+    if (wordSearch.includes(strClean)) {
+      return true
+    } else {
+      const search = strClean.split("")
+      const word = wordSearch.split("")
+      const coincidences = search.filter((letter, index) => word[index] === letter)
+      const threshold = coincidences.length / word.length > 0.75
+      const lengths = word.length === search.length
+      if (threshold && lengths) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+
   const getFilter = str => {
     const strClean = str.toLowerCase().replace(/\s/g, "")
     const results = Clouds.Samples.filter(item => {
       const KeyWords = ArrayName(item.name)
-      const match = KeyWords.filter(word => word.includes(strClean) || strClean.includes(word))
+      const match = KeyWords.filter(word => getSimilars(strClean, word))
       return match.length > 0
     })
     return results
