@@ -18,9 +18,8 @@ const SrollBar = css`
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    @import url("https://rsms.me/inter/inter.css");
     scroll-behavior: smooth;
-    font-family: "Inter", sans-serif;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 10px;
     background-color: #23272E;
     color: white;
