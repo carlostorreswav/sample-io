@@ -34,7 +34,7 @@ const MainScreenWrapper = styled.div`
   width: 200px;
   min-width: 230px;
   margin: 20px auto;
-  height: 85vh;
+  height: 80vh;
   overflow: hidden;
   background-color: #23272e;
 `
@@ -52,6 +52,21 @@ const WebScreenWrapper = styled.div`
 const MainTitle = styled.div`
   text-align: center;
   font-size: 2em;
+`
+
+const Title = styled.h1`
+  font-size: 4em;
+  width: 100%;
+  color: white;
+  letter-spacing: -4px;
+  text-align: center;
+  margin: 0px;
+  @media (max-width: 768px) {
+    font-size: 4em;
+    letter-spacing: -6px;
+  }
+  margin-top: 12px;
+  margin-bottom: 12px;
 `
 
 const H1 = styled.h1`
@@ -144,7 +159,7 @@ const WebIndex = () => {
         <MainFlex>
           <MainWrapper>
             <MainTitle>
-              <H1 margin="6px">sample-io</H1>
+              <Title margin="6px">sample-io</Title>
             </MainTitle>
             <MainBox>
               <WebScreenWrapper>
@@ -157,15 +172,9 @@ const WebIndex = () => {
                   <br />
                   <br />
                   <H1>This a quick demo of the software with no sound</H1>
-<br/>
-    <br/>
-<H1>Next feature:  <a
-                      href="https://github.com/sergree/matchering"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      MATCHERING
-                    </a> integration</H1>
-    <br/>
+                  <br />
+                  <br />
+                  <br />
                 </div>
               </WebScreenWrapper>
               <MainScreenWrapper>
