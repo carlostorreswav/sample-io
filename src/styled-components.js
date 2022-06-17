@@ -94,6 +94,12 @@ export const MainGrid = styled.div`
   grid-template-columns: 1fr;
   grid-auto-rows: min-content 1fr min-content min-content;
   overflow: hidden;
+  scroll-behavior: smooth;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 10px;
+  background-color: #23272e;
+  color: white;
 `
 
 export const GridItem = styled.div`
